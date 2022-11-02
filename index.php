@@ -1,5 +1,21 @@
 <?php require 'inc/data/products.php'; ?>
-<?php require 'inc/head.php'; ?>
+<?php require 'inc/head.php'; 
+
+session_start();
+require 'inc/data/products.php';
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
+
+
+    $product = $_GET['add_to_cart'];
+
+    $added = $catalog[$product]['name'];
+
+    $_SESSION['name_product'] = $added;
+    header('Location: index.php');
+}
+?>
+
+
 <section class="cookies container-fluid">
     <div class="row">
         <?php foreach ($catalog as $id => $cookie) { ?>
